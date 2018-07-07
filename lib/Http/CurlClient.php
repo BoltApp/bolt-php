@@ -29,7 +29,6 @@ class CurlClient
      * @param string $url URL to send a request to.
      * @param array request parameters
      *
-     * @throws \Exception when HTTP request timed out.
      * @return Response response.
      */
     public function post($url, $params)
@@ -42,7 +41,6 @@ class CurlClient
      * @param string $url URL to send a request to.
      * @param array request parameters
      *
-     * @throws \Exception when HTTP request timed out.
      * @return Response response.
      */
     public function get($url)
@@ -52,17 +50,20 @@ class CurlClient
 
     private function sendRequest($url, $method, $params = null ) {
         $ch = curl_init($url);
+        $contentLength = 0;
         if ($method === self::REQUEST_TYPE_POST) {
             curl_setopt($ch, CURLOPT_POST, 1);
             if ($params != null) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+                $encoded = json_encode($params);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+                $contentLength = strlen($encoded);
             }
         }
         $headers = array(
             'Content-Type: application/json',
-            'Content-Length: ' . strlen($params),
+            'Content-Length: ' . $contentLength,
             'X-Api-Key: ' . $this->apiKey,
-            'X-Nonce: ' . rand(100000000,   999999999),
+            'X-Nonce: ' . rand(100000000, 999999999),
             'User-Agent: BoltPay/PHP-Client-0.1'
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -71,9 +72,9 @@ class CurlClient
 
         $rawResponse = curl_exec($ch);
 
-        if ($rawResponse === false) {
+        if ($rawResponse === false) { // Timeout
             curl_close($ch);
-            throw new Exception("Request timed out");
+            return new Response(0, "{}", 0);
         }
 
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -92,7 +93,7 @@ class CurlClient
                 }
             }
         }
-        return new Response($statusCode, $body, $boltTraceId);
+        return new Response($statusCode, $body ?: [], $boltTraceId);
     }
 }
 

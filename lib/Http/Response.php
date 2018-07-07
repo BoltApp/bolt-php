@@ -18,9 +18,9 @@ class Response
     private $status;
 
     /**
-     * Response body.
+     * Decoded response body.
      *
-     * @var string
+     * @var object
      */
     private $body;
 
@@ -32,7 +32,7 @@ class Response
     private $traceId;
 
 
-    public function __construct(integer $status, string $body, string $traceId)
+    public function __construct($status, $body, $traceId)
     {
         $this->status = $status;
         $this->body = $body;
@@ -50,9 +50,9 @@ class Response
     }
 
     /**
-     * Get the HTTP response body.
+     * Get the HTTP response body as PHP object.
      *
-     * @return string
+     * @return object
      */
     public function getBody()
     {
