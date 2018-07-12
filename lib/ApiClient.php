@@ -1,10 +1,10 @@
 <?php
 
-namespace BoltPay\Http;
+namespace BoltPay;
 
 /**
  * Class ApiClient
- * @package BoltPay\Http
+ * @package BoltPay
  *
  * API Client to interact with Bolt APIs (https://docs.bolt.com/reference).
  */
@@ -30,7 +30,7 @@ class ApiClient {
     {
         $this->apiKey = $options['api_key'];
         $this->isSandbox = $options['is_sandbox'];
-        $this->httpClient = new CurlClient($this->apiKey);
+        $this->httpClient = new Http\CurlClient($this->apiKey);
     }
 
     /**
