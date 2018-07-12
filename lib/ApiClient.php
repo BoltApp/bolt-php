@@ -41,6 +41,14 @@ class ApiClient {
         return $this->httpClient->post($this->getUrl('merchant/orders'), $params);
     }
 
+    /**
+     * @param array $params
+     * @return Response
+     */
+    public function getTransactionDetails(string $reference) {
+        return $this->httpClient->get($this->getUrl('merchant/transactions/' . $reference));
+    }
+
     private function getUrl(string $path) {
         $base = $this->isSandbox ? 'https://api-sandbox.bolt.com/v1/' : 'https://api.bolt.com/v1/';
         return $base . $path;
