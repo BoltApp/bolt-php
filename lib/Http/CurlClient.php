@@ -20,7 +20,7 @@ class CurlClient
      */
     private $apiKey;
 
-    public function __construct(string $apiKey)
+    public function __construct($apiKey)
     {
         $this->apiKey = $apiKey;
     }
