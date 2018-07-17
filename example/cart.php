@@ -1,44 +1,35 @@
 <?php
 /** Render valid HTML with bolt checkout button */
+require(dirname(__FILE__) . '/init_example.php');
 
-require('../init.php');
 $successUrl = 'order_confirmation.php';
 $saveOrderUrl = 'create_order.php';
 
 $client = new \BoltPay\ApiClient([
-    'api_key' => \BoltPay\Bolt::getApiKey(),
-    'is_sandbox' => \BoltPay\Bolt::isSandboxMode()
+    'api_key' => \BoltPay\Bolt::$apiKey,
+    'is_sandbox' => \BoltPay\Bolt::$isSandboxMode
 ]);
+
 
 $exampleData = new \BoltPay\Example\Data();
 $cartData = $exampleData->generateCart();
 $cartItems = @$cartData['cart']['items'];
 $currency = @$cartData['cart']['currency'];
-$subTotal = $exampleData->getSubTotal($cartData);
 $discounts = @$cartData['cart']['discounts'];
 $grandTotal = @$cartData['cart']['total_amount'];
 
+/** @var \BoltPay\Http\Response $response */
 $response = $client->createOrder($cartData);
-$orderCreationResponse = $response->getBody();
-$orderToken = ($orderCreationResponse) ? @$orderCreationResponse->token : '';
-?><html>
+$orderToken = $response->isValidResponse()  ? @$response->getBody()->token : '';
+?>
+
+
+<html>
 <head>
     <title>Bolt php library demo</title>
 
-    <script
-            id="bolt-track"
-            type="text/javascript"
-            src="<?= \BoltPay\Helper::getTrackJsUrl(); ?>"
-            data-publishable-key="<?= \BoltPay\Bolt::getApiPublishableKey(); ?>">
-    </script>
-
-    <script
-            id="bolt-connect"
-            type="text/javascript"
-            src="<?= \BoltPay\Helper::getConnectJsUrl(); ?>"
-            data-publishable-key="<?= \BoltPay\Bolt::getApiPublishableKey(); ?>">
-    </script>
-
+    <?= \BoltPay\Helper::renderBoltTrackScriptTag(); ?>
+    <?= \BoltPay\Helper::renderBoltConnectScriptTag(); ?>
     <style>
         * {
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -196,10 +187,6 @@ $orderToken = ($orderCreationResponse) ? @$orderCreationResponse->token : '';
     <div class="cart-totals">
         <p>Summary</p>
         <table>
-            <tr>
-                <td>SUBTOTAL</td>
-                <td><?= $exampleData->getPriceDisplay($subTotal , $currency)?></td>
-            </tr>
             <?php foreach ($discounts as $discount) : ?>
                 <tr>
                     <td><?= @$discount['description'] ?></td>
@@ -225,7 +212,7 @@ $orderToken = ($orderCreationResponse) ? @$orderCreationResponse->token : '';
 <script>
     var cart = {
         "orderToken": "<?= $orderToken;?>",
-        "authcapture": <?= \BoltPay\Bolt::getAuthCapture()?>
+        "authcapture": <?= $exampleData->getAuthCaptureConfig()?>
     };
     var hints = {};
     var callbacks = {

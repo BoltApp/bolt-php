@@ -1,10 +1,10 @@
 <?php
 /** Call ApiClient's getTransactionDetails method and return fake order confirmation url */
-require('../init.php');
+require(dirname(__FILE__) . '/init_example.php');
 
 $client = new \BoltPay\ApiClient([
-    'api_key' => \BoltPay\Bolt::getApiKey(),
-    'is_sandbox' => \BoltPay\Bolt::isSandboxMode()
+    'api_key' => \BoltPay\Bolt::$apiKey,
+    'is_sandbox' => \BoltPay\Bolt::$isSandboxMode
 ]);
 
 $requestJson = file_get_contents('php://input');
