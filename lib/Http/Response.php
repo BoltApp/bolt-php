@@ -8,8 +8,7 @@ namespace BoltPay\Http;
  *
  * Response of HTTP request.
  */
-class Response
-{
+class Response {
     /**
      * HTTP status code.
      *
@@ -32,8 +31,7 @@ class Response
     private $traceId;
 
 
-    public function __construct($status, $body, $traceId)
-    {
+    public function __construct($status, $body, $traceId) {
         $this->status = $status;
         $this->body = $body;
         $this->traceId = $traceId;
@@ -44,8 +42,7 @@ class Response
      *
      * @return integer
      */
-    public function getStatusCode()
-    {
+    public function getStatusCode() {
         return $this->status;
     }
 
@@ -54,8 +51,7 @@ class Response
      *
      * @return object
      */
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
@@ -64,8 +60,16 @@ class Response
      *
      * @return string
      */
-    public function getTraceId()
-    {
+    public function getTraceId() {
         return $this->traceId;
+    }
+
+    /**
+     * Check if response data is successful
+     * @return bool
+     */
+    public function isResponseSuccessful()
+    {
+        return (int)($this->status / 100) == 2;
     }
 }

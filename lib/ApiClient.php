@@ -26,8 +26,7 @@ class ApiClient {
 
     private $httpClient;
 
-    public function __construct(array $options)
-    {
+    public function __construct(array $options) {
         $this->apiKey = $options['api_key'];
         $this->isSandbox = $options['is_sandbox'];
         $this->httpClient = new Http\CurlClient($this->apiKey);
@@ -42,15 +41,16 @@ class ApiClient {
     }
 
     /**
-     * @param array $params
+     * @param $reference
      * @return Response
+     * @internal param array $params
      */
-    public function getTransactionDetails(string $reference) {
+    public function getTransactionDetails($reference) {
         return $this->httpClient->get($this->getUrl('merchant/transactions/' . $reference));
     }
 
-    private function getUrl(string $path) {
-        $base = $this->isSandbox ? 'https://api-sandbox.bolt.com/v1/' : 'https://api.bolt.com/v1/';
+    private function getUrl($path) {
+        $base = $this->isSandbox ? Bolt::$apiSandboxUrl . '/v1/' : Bolt::$apiProductionUrl . '/v1/';
         return $base . $path;
     }
 }

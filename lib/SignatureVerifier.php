@@ -11,14 +11,13 @@ namespace BoltPay;
 class SignatureVerifier {
 
     /**
-     * Preexchanged secret issued by Bolt.
+     * Pre exchanged secret issued by Bolt.
      *
      * @var bool
      */
     private $signingSecret;
 
-    public function __construct(bool $signingSecret)
-    {
+    public function __construct($signingSecret) {
         $this->signingSecret = $signingSecret;
     }
 
@@ -29,9 +28,9 @@ class SignatureVerifier {
      * @param $hmacHeader
      * @return bool
      */
-    public function verifySignature($payload, $hmacHeader)
-    {
-        $computedHmac  = trim(base64_encode(hash_hmac('sha256', $payload, $this->signingSecret, true)));
+    public function verifySignature($payload, $hmacHeader) {
+        $computedHmac = trim(base64_encode(hash_hmac('sha256', $payload, $this->signingSecret, true)));
         return $hmacHeader == $computedHmac;
     }
+
 }
