@@ -65,10 +65,11 @@ class Response {
     }
 
     /**
-     * Check if response data is valid
+     * Check if response data is successful
      * @return bool
      */
-    public function isValidResponse() {
+    public function isResponseSuccessful()
+    {
         return (int)($this->status / 100) == 2;
     }
 }

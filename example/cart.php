@@ -20,7 +20,7 @@ $grandTotal = @$cartData['cart']['total_amount'];
 
 /** @var \BoltPay\Http\Response $response */
 $response = $client->createOrder($cartData);
-$orderToken = $response->isValidResponse()  ? @$response->getBody()->token : '';
+$orderToken = $response->isResponseSuccessful()  ? @$response->getBody()->token : '';
 ?>
 
 

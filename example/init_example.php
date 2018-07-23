@@ -5,7 +5,7 @@ $config = require(dirname(__FILE__) . '/config.php');
 
 // Set configuration data for example
 \BoltPay\Bolt::$apiKey = @$config['API_KEY'];
-\BoltPay\Bolt::$apiPublishableKey = @$config['API_PUBLISHABLE_KEY'];
+\BoltPay\Bolt::$apiPublishableKey = @$config['PUBLISHABLE_KEY'];
 \BoltPay\Bolt::$signingSecret = @$config['SIGNING_SECRET'];
 \BoltPay\Bolt::$isSandboxMode = @$config['IS_SANDBOX'];
 \BoltPay\Bolt::$authCapture = @$config['AUTH_CAPTURE'];
