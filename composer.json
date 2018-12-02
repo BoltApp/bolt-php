@@ -1,0 +1,21 @@
+{
+    "name": "boltpay/bolt-php",
+    "type": "library",
+    "description": "Official PHP library to interact with Bolt",
+    "authors": [
+        {
+            "name": "Bolt",
+            "homepage": "https://bolt.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "version": "1.0.0",
+    "license": "MIT",
+    "autoload": {
+        "psr-4" : {
+            "BoltPay\\" : "lib/"
+        }
+    }
+}
