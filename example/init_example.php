@@ -14,7 +14,7 @@
  * @license    https://opensource.org/licenses/MIT  MIT License (MIT)
  */
 
-require(dirname(dirname(__FILE__)) . '/init.php');
+require(dirname(__DIR__) . '/init.php');
 require(dirname(__FILE__) . '/Data.php');
 $config = require(dirname(__FILE__) . '/config.php');
 

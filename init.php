@@ -14,9 +14,18 @@
  * @license    https://opensource.org/licenses/MIT  MIT License (MIT)
  */
 
-require(dirname(__FILE__) . '/lib/ApiClient.php');
-require(dirname(__FILE__) . '/lib/Http/CurlClient.php');
-require(dirname(__FILE__) . '/lib/Http/Response.php');
-require(dirname(__FILE__) . '/lib/SignatureVerifier.php');
-require(dirname(__FILE__) . '/lib/Bolt.php');
-require(dirname(__FILE__) . '/lib/Helper.php');
+// Composer autoloader path
+$vendorAutoload = dirname(dirname(__DIR__)) . '/autoload.php';
+
+if (file_exists($vendorAutoload)) {
+    // Load classes via composer autoloader
+    require($vendorAutoload);
+} else {
+    // Preload library classes
+    require(dirname(__FILE__) . '/lib/ApiClient.php');
+    require(dirname(__FILE__) . '/lib/Http/CurlClient.php');
+    require(dirname(__FILE__) . '/lib/Http/Response.php');
+    require(dirname(__FILE__) . '/lib/SignatureVerifier.php');
+    require(dirname(__FILE__) . '/lib/Bolt.php');
+    require(dirname(__FILE__) . '/lib/Helper.php');
+}

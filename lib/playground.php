@@ -14,9 +14,7 @@
  * @license    https://opensource.org/licenses/MIT  MIT License (MIT)
  */
 
-require(dirname(__FILE__) . '/ApiClient.php');
-require(dirname(__FILE__) . '/Http/CurlClient.php');
-require(dirname(__FILE__) . '/Http/Response.php');
+require(dirname(__DIR__) . '/init.php');
 
 $client = new \BoltPay\ApiClient([
     'api_key' => 'c117fec29f5c1365dacbc62390b5b6f98c0698a812d7015849319f9f7b863064',
