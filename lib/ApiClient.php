@@ -63,6 +63,39 @@ class ApiClient {
         return $this->httpClient->get($this->getUrl('merchant/transactions/' . $reference));
     }
 
+    /**
+     * @param array $params
+     * @return Response
+     */
+    public function void(array $params) {
+        return $this->httpClient->post($this->getUrl('merchant/transactions/void'), $params);
+    }
+
+    /**
+     * @param array $params
+     * @return Response
+     */
+    public function capture(array $params) {
+        return $this->httpClient->post($this->getUrl('merchant/transactions/capture'), $params);
+    }
+
+    /**
+     * @param array $params
+     * @return Response
+     */
+    public function credit(array $params) {
+        return $this->httpClient->post($this->getUrl('merchant/transactions/credit'), $params);
+    }
+
+    /**
+     * Authorize a transaction from an existing customer (i.e. recharge).
+     * @param array $params
+     * @return Response
+     */
+    public function authorize(array $params) {
+        return $this->httpClient->post($this->getUrl('merchant/transactions/authorize'), $params);
+    }
+
     private function getUrl($path) {
         $base = $this->isSandbox ? Bolt::$apiSandboxUrl . '/v1/' : Bolt::$apiProductionUrl . '/v1/';
         return $base . $path;
