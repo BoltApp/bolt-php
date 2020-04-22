@@ -57,7 +57,12 @@ class CurlClientTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function get()
+
+    /**
+     * @test
+     * get method should set proper curl options including request headers and return response as expected
+     */
+    public function get_happyPath()
     {
         # mock curl response
         $bolt_test_fake_curl = get_fake_curl_instance();
@@ -89,8 +94,9 @@ class CurlClientTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @test
+     * post method should set proper curl options including request headers and return response as expected
      */
-    public function post()
+    public function post_happyPath()
     {
         # mock curl response
         $bolt_test_fake_curl = get_fake_curl_instance();
