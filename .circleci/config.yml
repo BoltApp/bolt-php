@@ -1,0 +1,40 @@
+version: 2.1
+
+jobs:
+  build_and_test:
+    parameters:
+      php-version:
+        type: string
+    docker:
+      - image: circleci/php:<< parameters.php-version >>
+    steps:
+      - checkout # check out the code in the project directory
+      - run:
+          name: "Install Dependencies"
+          command: composer install
+      - run:
+          name: "Run PHPUnit"
+          command: vendor/phpunit/phpunit/phpunit
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build_and_test:
+          name: "php56-build-and-test"
+          php-version: "5.6"
+      - build_and_test:
+          name: "php71-build-and-test"
+          php-version: "7.1"
+      - build_and_test:
+          name: "php70-build-and-test"
+          php-version: "7.0"
+      - build_and_test:
+          name: "php72-build-and-test"
+          php-version: "7.2"
+      - build_and_test:
+          name: "php73-build-and-test"
+          php-version: "7.3"
+      - build_and_test:
+          name: "php74-build-and-test"
+          php-version: "7.4"
