@@ -4,5 +4,5 @@ Official PHP library to interact with Bolt [APIs](https://docs.bolt.com/referenc
 
 ### Requirements
 
-PHP 5.4+
+PHP 5.6+
 
