@@ -20,7 +20,7 @@ namespace BoltPay;
  * Class ApiClient
  * @package BoltPay
  *
- * API Client to interact with Bolt APIs (https://docs.bolt.com/reference).
+ * API Client to interact with Bolt APIs (https://docs.bolt.com/api_reference).
  */
 class ApiClient {
 
@@ -94,6 +94,15 @@ class ApiClient {
      */
     public function authorize(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/transactions/authorize'), $params);
+    }
+
+    /**
+     * Manually review a transaction that is in the reversibly_rejected state.
+     * @param array $params
+     * @return Response
+     */
+    public function review(array $params) {
+        return $this->httpClient->post($this->getUrl('merchant/transactions/review'), $params);
     }
 
     private function getUrl($path) {
