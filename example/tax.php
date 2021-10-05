@@ -29,8 +29,11 @@ if (!$signatureVerifier->verifySignature($requestJson, $hmacHeader)) {
     throw new Exception("Failed HMAC Authentication");
 }
 
+$requestJson = file_get_contents('php://input');
+
+$shippingOption = json_decode($requestJson)->shipping_option;
 $exampleData = new \BoltPay\Example\Data();
-$response = $exampleData->generateShippingTaxOptions();
+$response = $exampleData->generateTaxOptions($shippingOption);
 
 header('Content-Type: application/json');
 http_response_code(200);
