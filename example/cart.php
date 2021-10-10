@@ -230,6 +230,7 @@ $orderToken = $response->isResponseSuccessful()  ? @$response->getBody()->token 
         "authcapture": <?= $exampleData->getAuthCaptureConfig()?>
     };
     var hints = {};
+    var is_pre_auth = <?php echo \BoltPay\Bolt::$isPreAuth ?>;
     var callbacks = {
         check: function () {
             // This function is called just before the checkout form loads.
@@ -257,26 +258,30 @@ $orderToken = $response->isResponseSuccessful()  ? @$response->getBody()->token 
         },
 
         success: function (transaction, callback) {
-            // This function is called when the Bolt checkout transaction is successful.
-            var xmlhttp = new XMLHttpRequest();
+           if (is_pre_auth){
+               callback();
+           }
+           else {
+               // This function is called when the Bolt checkout transaction is successful.
+               var xmlhttp = new XMLHttpRequest();
 
-            xmlhttp.open("POST", "<?=$saveOrderUrl?>", true);
-            xmlhttp.setRequestHeader("Content-type", "application/json");
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status == 200) {
+               xmlhttp.open("POST", "<?=$saveOrderUrl?>", true);
+               xmlhttp.setRequestHeader("Content-type", "application/json");
+               xmlhttp.onreadystatechange = function () {
+                   if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status == 200) {
 
-                    responseData = JSON.parse(xmlhttp.responseText);
-                    orderCompleted = true;
-                    callback();
-                }
-            };
-            xmlhttp.send(JSON.stringify({reference: transaction.reference}));
+                       responseData = JSON.parse(xmlhttp.responseText);
+                       orderCompleted = true;
+                       callback();
+                   }
+               };
+               xmlhttp.send(JSON.stringify({reference: transaction.reference}));
+           }
         },
 
         close: function () {
             // This function is called when the Bolt checkout modal is closed.
-
-            if (orderCompleted) {
+            if (!is_pre_auth && orderCompleted) {
                 if (typeof responseData.confirmation_url !== 'undefined' && responseData.confirmation_url) {
                     location.href = responseData.confirmation_url;
                 } else {

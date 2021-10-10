@@ -36,4 +36,6 @@ class Bolt {
     public static $isSandboxMode = true;
 
     public static $authCapture = false;
+
+    public static $isPreAuth = true;
 }
