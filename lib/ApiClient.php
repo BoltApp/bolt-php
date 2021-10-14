@@ -105,15 +105,6 @@ class ApiClient {
         return $this->httpClient->post($this->getUrl('merchant/transactions/review'), $params);
     }
 
-    /**
-     * Send shipment tracking details
-     * @param array $params
-     * @return Response
-     */
-    public function trackShipment(array $params) {
-        return $this->httpClient->post($this->getUrl('merchant/track_shipment'), $params);
-    }
-
     private function getUrl($path) {
         $base = $this->isSandbox ? Bolt::$apiSandboxUrl . '/v1/' : Bolt::$apiProductionUrl . '/v1/';
         return $base . $path;
