@@ -73,6 +73,32 @@ class Data
         return $cart;
     }
 
+    public function generateCartPaymentOnly()
+    {
+        $cart = $this->generateCart();
+        $cart['cart']['shipments'] = [
+            [
+                'cost' => 2000,
+                'shipping_address' => [
+                    'first_name' => 'Bolt',
+                    'last_name' => 'Bolt',
+                    'company' => 'BOLT company',
+                    'phone' => '8888888888',
+                    'street_address1' => '4535 ANNALEE Way',
+                    'locality' => 'Knoxville',
+                    'region' => 'Tennessee',
+                    'postal_code' => '37921',
+                    'country_code' => 'US',
+                    'email' => 'test@bolt.com'
+                ],
+                'service' => 'Sample Bolt Shipping',
+                'reference' => 'bolt_shipping',
+                ]
+        ];
+        $cart['cart']['tax_amount'] = 3000;
+        $cart['cart']['total_amount'] += $cart['cart']['tax_amount'] + $cart['cart']['shipments'][0]['cost'];
+        return $cart;
+    }
 
     /**
      * Get dummy shipping options

@@ -23,6 +23,8 @@ class Bolt {
 
     public static $apiPublishableKey;
 
+    public static $apiPublishablePaymentOnlyKey;
+
     public static $connectSandboxBase = 'https://connect-sandbox.bolt.com';
 
     public static $connectProductionBase = 'https://connect.bolt.com';
