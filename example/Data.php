@@ -22,6 +22,7 @@ namespace BoltPay\Example;
  */
 class Data
 {
+    const VALID_COUPON = 'BOLT-DEMO';
     /**
      * Get dummy customer data
      * @return array
