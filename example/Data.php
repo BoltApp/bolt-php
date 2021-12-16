@@ -27,7 +27,8 @@ class Data
      * Get dummy customer data
      * @return array
      */
-    public function generateCart() {
+    public function generateCart()
+    {
         $orderReference = 'or_' . time();
 
         $cart = [
@@ -102,10 +103,11 @@ class Data
     }
 
     /**
-     * Get dummy shipping options
+     * Get dummy shipping and tax options
      * @return array
      */
-    public function generateShippingOptions() {
+    public function generateShippingTaxOptions()
+    {
         return [
             'shipping_options' => [
                 [
@@ -146,12 +148,67 @@ class Data
     }
 
     /**
+     * Get dummy shipping options
+     * @return array
+     */
+    public function generateShippingOptions()
+    {
+        return [
+            'shipping_options' => [
+                [
+                    'service' => 'Flat Rate - Fixed',
+                    'reference' => 'flatrate_flatrate',
+                    'cost' => 800,
+                ],
+                [
+                    'service' => 'Free Shipping - Free',
+                    'reference' => 'freeshipping_freeshipping',
+                    'cost' => 0,
+                ],
+                [
+                    'service' => 'United Parcel Service - Worldwide Expedited',
+                    'reference' => 'ups_XPD',
+                    'cost' => 11479,
+                ],
+                [
+                    'service' => 'United Parcel Service - Worldwide Express Saver',
+                    'reference' => 'ups_WXS',
+                    'cost' => 12192,
+                ],
+                [
+                    'service' => 'United Parcel Service - Worldwide Express',
+                    'reference' => 'ups_XPR',
+                    'cost' => 12601,
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @param $shippingOption
+     * @return array
+     */
+    public function generateTaxOptions($shippingOption)
+    {
+        $taxAmount = 1500;
+        return [
+            'shipping_option' => [
+                'service' => $shippingOption->service,
+                'reference' => $shippingOption->reference,
+                'cost' => $shippingOption->cost,
+                'tax_amount' => $taxAmount,
+            ],
+        ];
+    }
+
+    /**
      * Get price display data
      * @param $amount
      * @param $currency
      * @return string
      */
-    public function getPriceDisplay($amount, $currency) {
+    public function getPriceDisplay($amount, $currency)
+    {
         return $amount . $currency;
     }
 
@@ -159,8 +216,9 @@ class Data
      * Get auth capture config for javascript variable
      * @return string
      */
-    public function getAuthCaptureConfig() {
-       return json_encode(\BoltPay\Bolt::$authCapture);
+    public function getAuthCaptureConfig()
+    {
+        return json_encode(\BoltPay\Bolt::$authCapture);
     }
 
 }

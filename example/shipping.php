@@ -30,7 +30,7 @@ if (!$signatureVerifier->verifySignature($requestJson, $hmacHeader)) {
 }
 
 $exampleData = new \BoltPay\Example\Data();
-$response = $exampleData->generateShippingTaxOptions();
+$response = $exampleData->generateShippingOptions();
 
 header('Content-Type: application/json');
 http_response_code(200);
