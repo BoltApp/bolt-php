@@ -45,27 +45,31 @@ class Helper {
 
     /**
      * Get script tag for track js url
+     * @param $paymentOnlyKey
      * @return string
      */
-    public static function renderBoltTrackScriptTag() {
+    public static function renderBoltTrackScriptTag($paymentOnlyKey = false) {
+        $publishableKey = $paymentOnlyKey ? \BoltPay\Bolt::$apiPublishablePaymentOnlyKey : \BoltPay\Bolt::$apiPublishableKey;
         return ' <script
                         id="bolt-track"
                         type="text/javascript"
                         src="' . self::getTrackJsUrl() . '"
-                        data-publishable-key="' . \BoltPay\Bolt::$apiPublishableKey . '">
+                        data-publishable-key="' . $publishableKey . '">
                 </script>';
     }
 
     /**
      * Get script tag for bolt connect js url
+     * @param $paymentOnlyKey
      * @return string
      */
-    public static function renderBoltConnectScriptTag() {
+    public static function renderBoltConnectScriptTag($paymentOnlyKey = false) {
+        $publishableKey = $paymentOnlyKey ? \BoltPay\Bolt::$apiPublishablePaymentOnlyKey : \BoltPay\Bolt::$apiPublishableKey;
         return '<script
                         id="bolt-connect"
                         type="text/javascript"
                         src="' . self::getConnectJsUrl() . '"
-                        data-publishable-key="' . \BoltPay\Bolt::$apiPublishableKey . '">
+                        data-publishable-key="' . $publishableKey . '">
                 </script>';
     }
 

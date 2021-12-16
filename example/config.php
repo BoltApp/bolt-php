@@ -20,6 +20,7 @@ return [
     'AUTH_CAPTURE' => true,
     'SIGNING_SECRET' => '75baadb22f39a233caf1cef9892b067d577d1f95ef2b9568052b24fdb91df1b2',
     'PUBLISHABLE_KEY' => 'ee96127be90e634854461d77b01d2b09b54015db0d5105c2e530fe079b1ba0ba.Vhs9W8DAXEam.MnTTqocZlvDE',
+    'PUBLISHABLE_KEY_PAYMENT_ONLY' => 'EDvlZcoqTTnM.DklyCuA6_ROK.67589803d4a2d2da77d3d5d54d091c828b90c78df925922e457ed86d296b36cd',
     'CONNECT_SANDBOX_BASE' => 'https://connect-sandbox.bolt.com',
     'CONNECT_PRODUCTION_BASE' => 'https://connect.bolt.com',
     'API_SANDBOX_URL' => 'https://api-sandbox.bolt.com',
