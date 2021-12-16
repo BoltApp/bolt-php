@@ -46,6 +46,15 @@ switch ($event) {
     case "order.shipping_and_tax":
         $data = $exampleData->generateShippingTaxOptions();
         break;
+    case "order.create":
+        $baseUrl = $exampleData->getBaseUrl();
+        $data = [
+            'status' => 'success',
+            'message' => 'Order create was successful.',
+            'order_received_url' => $baseUrl . '/example/order_confirmation.php',
+            'display_id' => @$requestData->order->cart->display_id
+        ];
+        break;
 }
 
 echo json_encode(
