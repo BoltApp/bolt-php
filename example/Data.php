@@ -221,4 +221,15 @@ class Data
         return json_encode(\BoltPay\Bolt::$authCapture);
     }
 
+    /**
+     * Get base url
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        $hostName = $_SERVER['HTTP_HOST'];
+        $protocol = strtolower(substr($_SERVER["REQUEST_SCHEME"], 0, 5)) == 'https://' ? 'https://' : 'http://';
+        return $protocol . $hostName;
+    }
+
 }
