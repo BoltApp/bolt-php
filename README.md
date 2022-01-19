@@ -6,12 +6,12 @@ Official PHP library to interact with Bolt [APIs](https://docs.bolt.com/referenc
 
 PHP 5.6+
 
-#####API credentials
+#### API credentials
 * The following three required values, (i.e. API Key, Signing Secret, Publishable Key) can be found in your Bolt Merchant Dashboard under Developers > API. The Publishable Key is for the multi-step checkout by default. You can find other publishable keys (Payment Only) in the division dropdown at the top-right corner.
 * For production, these will be found at: https://merchant.bolt.com
 * For sandbox mode, use the following URL: https://merchant-sandbox.bolt.com".
 
-#####Bolt Configuration:
+#### Bolt Configuration:
 
 Let's say https://your-store-url.com is the base URL of your store. You need go to Developers > API > Merchant API and configure hook URLs in your Bolt Merchant Dashboard
 
@@ -22,7 +22,7 @@ Let's say https://your-store-url.com is the base URL of your store. You need go 
 * Create Order: https://your-store-url.com/example/create_order.php (if the pre-auth order creation feature is enabled)
 
 
-#####Plugin configuration: 
+#### Plugin configuration: 
 Go to file example/config.php and configure value for essential settings below
 * API_KEY: This is used for calling Bolt API from your back-end server
 * IS_SANDBOX: This is used for setting up testing vs. production execution environment
@@ -30,7 +30,7 @@ Go to file example/config.php and configure value for essential settings below
 * PUBLISHABLE_KEY: This is used to open the Bolt Payment Popup typically on cart (multi step) page (example/cart.php)
 * PUBLISHABLE_KEY_PAYMENT_ONLY: This is used to open the Bolt Payment Popup typically on cart payment only page (example/cart_paymentonly.php)
 
-#####Demo: 
+##### Demo: 
 Let's say https://your-store-url.com is the base URL of your store
 * Go to https://your-store-url.com/example/cart.php to see the cart page
 * Go to https://your-store-url.com/example/cart_paymentonly.php to see the cart payment only page
