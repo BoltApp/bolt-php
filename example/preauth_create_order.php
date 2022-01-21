@@ -24,6 +24,7 @@ $client = new \BoltPay\ApiClient([
 
 $requestJson = file_get_contents('php://input');
 $requestData = json_decode($requestJson);
+$exampleData = new \BoltPay\Example\Data();
 $baseUrl = $exampleData->getBaseUrl();
 $response = [
     'status' => 'success',
