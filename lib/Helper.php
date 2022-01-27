@@ -35,6 +35,12 @@ class Helper {
             Bolt::$connectProductionBase . "/connect.js";
     }
 
+    public static function getPayByLinkUrl() {
+        return Bolt::$isSandboxMode ?
+            Bolt::$connectSandboxBase . "/checkout" :
+            Bolt::$connectProductionBase . "/checkout";
+    }
+
     /**
      * Get bolt url
      * @return string
@@ -72,5 +78,7 @@ class Helper {
                         data-publishable-key="' . $publishableKey . '">
                 </script>';
     }
+
+
 
 }
