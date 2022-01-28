@@ -58,6 +58,44 @@ if (@$requestData->type == 'discounts.code.apply') {
     }
 
 }
+
+if (@$requestData->type == "cart.create") {
+    $orderReference = 'or_' . time();
+    $cartData = [
+        'cart' => [
+            'order_reference' => $orderReference,
+            'display_id' => "di_" . time(),
+            'currency' => 'USD',
+            'total_amount' => 10000 * $requestData->items[0]->quantity,
+            'items' => [
+                [
+                    'reference' => $requestData->items[0]->reference,
+                    'image_url' => '',
+                    'name' => 'Sample Bolt product 1',
+                    'sku' => 'BOLT-DEMO-SKU_1',
+                    'description' => '',
+                    'total_amount' => 10000 * $requestData->items[0]->quantity,
+                    'unit_price' => 10000,
+                    'quantity' => $requestData->items[0]->quantity,
+                    'type' => 'physical'
+                ],
+            ]
+        ]
+    ];
+
+    $client = new \BoltPay\ApiClient([
+        'api_key' => \BoltPay\Bolt::$apiKey,
+        'is_sandbox' => \BoltPay\Bolt::$isSandboxMode
+    ]);
+
+    $response = $client->createOrder($cartData);
+
+    $response = [
+        'status' => 'success',
+        'cart' => $cartData['cart'],
+    ];
+}
+
 echo json_encode($response);
 
 

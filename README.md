@@ -20,6 +20,7 @@ Let's say https://your-store-url.com is the base URL of your store. You need go 
 * Tax: https://your-store-url.com/example/tax.php (if the split shipping and tax feature is enabled) 
 * Shipping And Tax: https://your-store-url.com/example/shipping_and_tax.php (if the split shipping and tax feature is disabled) 
 * Create Order: https://your-store-url.com/example/preauth_create_order.php (if the pre-auth order creation feature is enabled)
+* WebHook: https://your-store-url.com/example/apihook.php 
 
 
 #### Plugin configuration: 
