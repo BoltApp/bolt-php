@@ -238,6 +238,10 @@ $orderToken = $response->isResponseSuccessful()  ? @$response->getBody()->token 
             </tr>
         </table>
         <div class="bolt-checkout-button with-cards"></div>
+        <br/><br/>
+        <div>
+            <div>Send <a href="<?php echo \BoltPay\Helper::getPayByLinkUrl().'?publishable_key='.\BoltPay\Bolt::$apiPublishablePaymentOnlyKey.'&token='.$orderToken; ?>">this link</a> to consumer to receive payment</div>
+        </div>
     </div>
 
 </div>
