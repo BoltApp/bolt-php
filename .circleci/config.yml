@@ -6,7 +6,7 @@ jobs:
       php-version:
         type: string
     docker:
-      - image: circleci/php:<< parameters.php-version >>
+      - image: cimg/php:<< parameters.php-version >>
     steps:
       - checkout # check out the code in the project directory
       - run:
