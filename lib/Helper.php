@@ -42,6 +42,15 @@ class Helper {
     }
 
     /**
+     * Get the account javascript url to production or sandbox
+     */
+    public static function getAccountJsUrl() {
+        return Bolt::$isSandboxMode ?
+            Bolt::$connectSandboxBase . "/account.js" :
+            Bolt::$connectProductionBase . "/account.js";
+    }
+
+    /**
      * Get bolt url
      * @return string
      */
@@ -79,6 +88,17 @@ class Helper {
                 </script>';
     }
 
-
+    /**
+     * Get script tag for bolt connect js url
+     * @return string
+     */
+    public static function renderBoltAccountScriptTag() {
+        return '<script
+                        id="bolt-account"
+                        type="text/javascript"
+                        src="' . self::getAccountJsUrl() . '"
+                        data-publishable-key="' . \BoltPay\Bolt::$apiPublishableKey . '">
+                </script>';
+    }
 
 }

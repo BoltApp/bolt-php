@@ -39,12 +39,14 @@ $orderToken = $response->isResponseSuccessful()  ? @$response->getBody()->token 
 ?>
 
 
+
 <html>
 <head>
     <title>Bolt php library demo</title>
 
     <?= \BoltPay\Helper::renderBoltTrackScriptTag(); ?>
     <?= \BoltPay\Helper::renderBoltConnectScriptTag(); ?>
+    <?= \BoltPay\Helper::renderBoltAccountScriptTag(); ?>
     <style>
         * {
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -167,7 +169,7 @@ $orderToken = $response->isResponseSuccessful()  ? @$response->getBody()->token 
     </style>
 </head>
 <body>
-
+<div class="bolt-account-login"></div>
 <div class="cart-title">
     <h1>SHOPPING CART</h1>
 </div>
