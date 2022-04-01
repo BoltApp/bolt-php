@@ -33,6 +33,7 @@ Go to file example/config.php and configure value for essential settings below
 
 ##### Demo: 
 Let's say https://your-store-url.com is the base URL of your store
-* Go to https://your-store-url.com/example/cart.php to see the cart page
-* Go to https://your-store-url.com/example/cart_paymentonly.php to see the cart payment only page
+* Go to https://your-store-url.com/example/cart.php to see Bolt Multi-Step Checkout works in the cart page
+* Go to https://your-store-url.com/example/cart_paymentonly.php to see Bolt Payment Only Checkout works the cart payment only page
+* Go to https://your-store-url.com/example/product_page_checkout.php.php to see Bolt works in product page
 
