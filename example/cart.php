@@ -13,7 +13,7 @@
  * @copyright  Copyright (c) 2018 Bolt Financial, Inc (https://www.bolt.com)
  * @license    https://opensource.org/licenses/MIT  MIT License (MIT)
  */
-
+session_start();
 /** Render valid HTML with bolt checkout button */
 require(dirname(__FILE__) . '/init_example.php');
 
@@ -165,11 +165,31 @@ $orderToken = $response->isResponseSuccessful()  ? @$response->getBody()->token 
             padding: 12px 10px;
         }
 
+        .bolt-account-sso {
+            float: left;
+        }
 
+        .bolt-account-login {
+            float:right;
+        }
+
+        .header {
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
     </style>
 </head>
 <body>
-<div class="bolt-account-login"></div>
+<div class="header">
+    <?php if (@$_SESSION['logged_in']): ?>
+        <div class="bolt-sso-custom" data-logged-in="true" style="float: left">
+           <a href="<?php echo $exampleData->getBaseUrl().'/example/sso/logout.php'; ?>">Logout</a>
+        </div>
+    <?php else: ?>
+        <div class="bolt-account-sso" data-logged-in="false" style="float: left"></div>
+    <?php endif; ?>
+    <div class="bolt-account-login" style="float:right;"></div>
+</div>
 <div class="cart-title">
     <h1>SHOPPING CART</h1>
 </div>
