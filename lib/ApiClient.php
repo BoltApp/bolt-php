@@ -48,7 +48,7 @@ class ApiClient {
 
     /**
      * @param array $params
-     * @return Response
+     * @return Http\Response
      */
     public function createOrder(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/orders'), $params);
@@ -56,7 +56,7 @@ class ApiClient {
 
     /**
      * @param $reference
-     * @return Response
+     * @return Http\Response
      * @internal param array $params
      */
     public function getTransactionDetails($reference) {
@@ -65,7 +65,7 @@ class ApiClient {
 
     /**
      * @param array $params
-     * @return Response
+     * @return Http\Response
      */
     public function void(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/transactions/void'), $params);
@@ -73,7 +73,7 @@ class ApiClient {
 
     /**
      * @param array $params
-     * @return Response
+     * @return Http\Response
      */
     public function capture(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/transactions/capture'), $params);
@@ -81,7 +81,7 @@ class ApiClient {
 
     /**
      * @param array $params
-     * @return Response
+     * @return Http\Response
      */
     public function credit(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/transactions/credit'), $params);
@@ -90,7 +90,7 @@ class ApiClient {
     /**
      * Authorize a transaction from an existing customer (i.e. recharge).
      * @param array $params
-     * @return Response
+     * @return Http\Response
      */
     public function authorize(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/transactions/authorize'), $params);
@@ -99,7 +99,7 @@ class ApiClient {
     /**
      * Manually review a transaction that is in the reversibly_rejected state.
      * @param array $params
-     * @return Response
+     * @return Http\Response
      */
     public function review(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/transactions/review'), $params);
@@ -108,7 +108,7 @@ class ApiClient {
     /**
      * Send shipment tracking details
      * @param array $params
-     * @return Response
+     * @return Http\Response
      */
     public function trackShipment(array $params) {
         return $this->httpClient->post($this->getUrl('merchant/track_shipment'), $params);
